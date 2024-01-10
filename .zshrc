@@ -133,8 +133,8 @@ alias jc="sudo journalctl"
 alias jcu="journalctl --user"
 
 # fzf
-[[ -f "/usr/share/fzf/key-bindings.zsh" ]] && source "/usr/share/fzf/key-bindings.zsh"
-[[ -f "/usr/share/fzf/completion.zsh" ]] && source "/usr/share/fzf/completion.zsh"
+[ -f "/usr/share/fzf/key-bindings.zsh" ] && source "/usr/share/fzf/key-bindings.zsh"
+[ -f "/usr/share/fzf/completion.zsh" ] && source "/usr/share/fzf/completion.zsh"
 
 # fuzzy multi-select modified file
 gfls() {
@@ -155,10 +155,10 @@ gfa() {
 alias vi="vim"
 
 # Other tools
-[[ type "zoxide" &> /dev/null ]] && eval "$(zoxide init zsh)"
-[[ type "starship" &> /dev/null ]] && eval "$(starship init zsh)"
+type "zoxide" &> /dev/null && eval "$(zoxide init zsh)"
+type "starship" &> /dev/null && eval "$(starship init zsh)"
 
 # Initialize ssh key agent
-[[ type "keychain" &> /dev/null ]] && eval $(keychain --eval --quiet id $ADDITIONAL_KEYCHAIN_KEYS)
+type "keychain" &> /dev/null && eval $(keychain --eval --quiet id $ADDITIONAL_KEYCHAIN_KEYS)
 
 source $HOME/.zshrc.local
