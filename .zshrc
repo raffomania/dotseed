@@ -57,10 +57,15 @@ alias a="augr"
 alias tmn='tmux new -s'
 alias tma='tmux attach -t'
 alias tmk='tmux kill-session -t'
-alias ls='exa'
-alias less='bat'
-alias la='exa -lga'
-alias ll='exa -lgh'
+ls_cmd='ls'
+type exa &> /dev/null && ls_cmd='exa'
+# shellcheck disable=SC2139
+alias ls="$ls_cmd"
+# shellcheck disable=SC2139
+alias la="$ls_cmd -lga"
+# shellcheck disable=SC2139
+alias ll="$ls_cmd -lgh"
+type bat &> /dev/null && alias less='bat'
 alias duhd='du -hd 1 | sort -h'
 alias duh='du -ahld 1 | sort -h'
 alias .j='just --justfile=$HOME/.justfile --working-directory=.'
@@ -81,7 +86,7 @@ alias tl='todo list actions'
 alias tlt='todo list actions --due "$(qalc -t 23 - $(date +%H))"'
 
 function td() {
-    todo $@ && systemctl --user start --no-block vdirsyncer
+    todo "$@" && systemctl --user start --no-block vdirsyncer
 }
 
 ## trans
@@ -133,7 +138,9 @@ alias jc="sudo journalctl"
 alias jcu="journalctl --user"
 
 # fzf
+# shellcheck source=/dev/null
 [ -f "/usr/share/fzf/key-bindings.zsh" ] && source "/usr/share/fzf/key-bindings.zsh"
+# shellcheck source=/dev/null
 [ -f "/usr/share/fzf/completion.zsh" ] && source "/usr/share/fzf/completion.zsh"
 
 # fuzzy multi-select modified file
@@ -159,6 +166,7 @@ type "zoxide" &> /dev/null && eval "$(zoxide init zsh)"
 type "starship" &> /dev/null && eval "$(starship init zsh)"
 
 # Initialize ssh key agent
-type "keychain" &> /dev/null && eval $(keychain --eval --quiet id $ADDITIONAL_KEYCHAIN_KEYS)
+type "keychain" &> /dev/null && eval "$(keychain --eval --quiet id "$ADDITIONAL_KEYCHAIN_KEYS")"
 
-source $HOME/.zshrc.local
+# shellcheck source=/dev/null
+source "$HOME/.zshrc.local"
