@@ -3,7 +3,8 @@
 set -euxo pipefail
 
 cp .zshrc .zshenv ~
-echo "export PATH=\$PATH:$(dirname "$0")/bin" >> ~/.zshenv
+dotseed_dir=$(realpath -e "$(dirname "${BASH_SOURCE[0]}")")
+echo "export PATH=\$PATH:$dotseed_dir/bin" >> ~/.zshenv
 touch ~/.zshrc.local ~/.zshenv.local
 
 if [[ ! "$SHELL" == *zsh ]]; then
