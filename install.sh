@@ -6,7 +6,7 @@ cp .zshrc .zshenv ~
 echo "export PATH=\$PATH:$(dirname "$0")/bin" >> ~/.zshenv
 touch ~/.zshrc.local ~/.zshenv.local
 
-if [[ ! "$SHELL" =~ "zsh$" ]]; then
+if [[ ! "$SHELL" == *zsh ]]; then
     chsh -s /usr/bin/zsh
 fi
 
