@@ -46,6 +46,9 @@ zle -N zle-line-init
 echo -ne '\e[6 q' # Use beam shape cursor on startup.
 preexec() { echo -ne '\e[6 q' ;} # Use beam shape cursor for each new prompt.
 
+# Enable backwards search
+bindkey "^R" history-incremental-search-backward
+
 # Aliases
 alias nn='nnn -C'
 alias v='nvim'
