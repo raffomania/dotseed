@@ -18,11 +18,16 @@ zstyle ':completion:*' special-dirs true # complete . and ..
 # case insensitive autocompletion
 zstyle ':completion:*' matcher-list 'm:{a-zA-Z-_}={A-Za-z_-}' 'r:|=*' 'l:|=* r:|=*'
 
-# Why should this be any smaller
-# It's not the 90s anymore
-HISTSIZE=100000
-SAVEHIST=100000
-HISTFILE=~/.zsh_history
+# history
+HISTSIZE=100000000
+SAVEHIST=$HISTSIZE
+HISTFILE="$HOME/.zsh_history"
+setopt SHARE_HISTORY
+setopt HIST_EXPIRE_DUPS_FIRST    # Expire duplicate entries first when trimming history.
+setopt HIST_IGNORE_ALL_DUPS      # Delete old recorded entry if new entry is a duplicate.
+setopt HIST_IGNORE_SPACE         # Don't record an entry starting with a space.
+setopt HIST_SAVE_NO_DUPS         # Don't write duplicate entries in the history file.
+setopt HIST_REDUCE_BLANKS        # Remove superfluous blanks before recording entry.
 
 # vi mode
 # Change cursor shape for different vi modes.
